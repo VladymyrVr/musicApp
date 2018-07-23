@@ -1,0 +1,76 @@
+header {
+  height: 100px;
+  box-shadow: 0 -1px 0 0 #e5e5e5 inset;
+
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    letter-spacing: .5px;
+
+    span {
+      color: #ff0000;
+    }
+  }
+
+  .wrapper {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  input {
+    box-sizing: border-box;
+    display: block;
+    width: 300px;
+    height: 100%;
+    text-align: left;
+    vertical-align: middle;
+    outline: 0;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 7px 30px 7px 13px;
+    transition: border-color .2s ease;
+    background: url('../../../assets/img/find-icon.png') no-repeat calc(100% - 16px) center;
+
+    &:focus {
+      border: 2px solid #ffa500;
+    }
+  }
+
+  .log-in {
+    display: block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    outline: none;
+    background: transparent;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover {
+      border: 1px solid #ffa500;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      width: 24px;
+      height: 24px;
+      background: url("../../../assets/img/log-in.png") no-repeat;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+
+}
