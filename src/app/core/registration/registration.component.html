@@ -38,10 +38,9 @@
         Repeat password is required</p>
       <p class="bg-danger" *ngIf="passwordFormGroup.errors?.doesMatchPassword">Password does not match</p>
       <div class="buttons-group">
-        <button matt-button type="submit" [disabled]="registrationFormGroup.invalid" (click)="onClickRegister()">Register</button>
+        <button type="submit" [disabled]="registrationFormGroup.invalid" (click)="onClickRegister()">Register</button>
         <a routerLink="/login">Sign in</a>
       </div>
     </form>
-
   </div>
 </div>

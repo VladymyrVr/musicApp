@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
     this.show = !this.show;
   }
   handleLogin() {
-    const userCheck = JSON.parse(localStorage.getItem('user')).filter((item) => {
+    const userCheck = JSON.parse(localStorage.getItem('user')).find((item) => {
       return (item.email === this.loginFormGroup.value.email);
     });
-    if (userCheck[0] !== undefined) {
+    if (userCheck) {
       this.router.navigate(['']);
     } else {
      this.openSnackBar('Email or password is incorrect', 'Try again');
