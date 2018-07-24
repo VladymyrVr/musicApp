@@ -1,36 +1,47 @@
 <div class="registration">
   <div class="registration-wrapper">
     <h2>Register</h2>
-    <form [formGroup]="registrationFormGroup" (ngSubmit)="onClickRegister()">
+    <form [formGroup]="registrationFormGroup">
       <div class="mail-field">
-        <input type="email" placeholder="Email" required title="Enter your email"/>
+        <input type="email" formControlName="email" placeholder="Email" title="Enter your email"/>
         <span></span>
       </div>
+      <p class="bg-danger"
+         *ngIf="registrationFormGroup.controls.email.errors?.required && registrationFormGroup.controls.email.touched">
+        Email is required
+      </p>
       <div class="user-field">
-        <input type="text" placeholder="User" name="username" formControlName="username" required
-               title="Enter your username" minlength="5" maxlength="9"/>
+        <input type="text" placeholder="User" formControlName="username"
+               title="Enter your username"/>
         <span></span>
       </div>
       <p class="bg-danger"
          *ngIf="registrationFormGroup.controls.username.errors?.required && registrationFormGroup.controls.username.touched">
-        Username is required</p>
+        Username is required
+      </p>
       <div [formGroup]="passwordFormGroup">
         <div class="password-field">
-          <input [type]="show ? 'text' : 'password'" required placeholder="Password" title="Enter your Password" name="password" formControlName="password"/>
+          <input [type]="show ? 'text' : 'password'" placeholder="Password" title="Enter your Password"
+                 formControlName="password"/>
           <span (click)="showPassword()" title="Show Password"></span>
         </div>
-        <p class="bg-danger" *ngIf="passwordFormGroup.controls.password.errors?.required && passwordFormGroup.controls.password.touched">Password is required</p>
+        <p class="bg-danger"
+           *ngIf="passwordFormGroup.controls.password.errors?.required && passwordFormGroup.controls.password.touched">
+          Password is required</p>
         <div class="password-field">
-          <input type="password" placeholder="Retype Password" required title="Retype your Password please" name="repeatPassword" formControlName="repeatPassword">
+          <input type="password" placeholder="Retype Password" title="Retype your Password please"
+                 formControlName="repeatPassword">
         </div>
-        <p class="bg-danger" *ngIf="passwordFormGroup.controls.repeatPassword.errors?.required && passwordFormGroup.controls.repeatPassword.touched">Repeat password is required</p>
-        <p class="bg-danger" *ngIf="passwordFormGroup.errors?.doesMatchPassword">Password does not match</p>
       </div>
-        <div class="buttons-group">
-          <button type="submit" [disabled]="!registrationFormGroup.valid">Register</button>
-          <a routerLink="/login">Sign in</a>
-        </div>
+      <p class="bg-danger"
+         *ngIf="passwordFormGroup.controls.repeatPassword.errors?.require && passwordFormGroup.controls.repeatPassword.touched">
+        Repeat password is required</p>
+      <p class="bg-danger" *ngIf="passwordFormGroup.errors?.doesMatchPassword">Password does not match</p>
+      <div class="buttons-group">
+        <button matt-button type="submit" [disabled]="registrationFormGroup.invalid" (click)="onClickRegister()">Register</button>
+        <a routerLink="/login">Sign in</a>
+      </div>
     </form>
-  </div>
 
+  </div>
 </div>

@@ -1,3 +1,25 @@
-<div>
-  <a routerLink="/registration">Sign Up</a>
-</div>
+<section class="login">
+  <div class="login-wrapper">
+    <h2>Sign In</h2>
+    <form [formGroup]="loginFormGroup">
+      <div class="mail-field">
+        <input type="email" formControlName="email" placeholder="Email" title="Enter your email"/>
+        <span></span>
+      </div>
+      <p class="bg-danger"
+         *ngIf="loginFormGroup.controls.email.errors?.required && loginFormGroup.controls.email.touched">
+        Email is required
+      </p>
+      <div class="password-field">
+        <input [type]="show ? 'text' : 'password'" placeholder="Password" title="Enter your Password"
+               formControlName="password"/>
+        <span (click)="showPassword()" title="Show Password"></span>
+      </div>
+      <p class="bg-danger"
+         *ngIf="loginFormGroup.controls.password.errors?.require && loginFormGroup.controls.password.touched">
+        Password is required</p>
+      <button [disabled]="loginFormGroup.invalid" (click)="handleLogin()">Sign In</button>
+    </form>
+    <p>If you dont have account please <a routerLink="/registration">Sign Up</a></p>
+  </div>
+</section>

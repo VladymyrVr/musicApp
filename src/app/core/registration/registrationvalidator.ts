@@ -5,11 +5,11 @@ export class RegistrationValidator {
     const password = registrationFormGroup.controls.password.value;
     const repeatPassword = registrationFormGroup.controls.repeatPassword.value;
 
-    if (repeatPassword.length <= 0) {
+    if (repeatPassword && repeatPassword.length <= 0) {
       return null;
     }
 
-    if (repeatPassword !== password) {
+    if (repeatPassword && repeatPassword !== password) {
       return {
         doesMatchPassword: true
       };

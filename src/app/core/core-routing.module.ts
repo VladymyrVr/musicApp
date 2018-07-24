@@ -5,13 +5,22 @@ import { RegistrationComponent} from './registration/registration.component';
 
 const routes: Routes = [
   {
+    path: 'home',
+    loadChildren: '../home/home.module#HomeModule'
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
   {
     path: 'registration',
     component: RegistrationComponent
-  }
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
