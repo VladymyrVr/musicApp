@@ -15,7 +15,6 @@ export class RegistrationComponent implements OnInit {
   Users: Array<string> = [];
   show: Boolean = false;
   registrationFormGroup: FormGroup;
-  passwordFormGroup: FormGroup;
   message: string = 'The registration was successfully.';
   actionButtonLabel: string = '';
   action: Boolean = true;
@@ -26,13 +25,12 @@ export class RegistrationComponent implements OnInit {
     this.registrationFormGroup = this.formBuilder.group({
       username: [null, [Validators.required, Validators.maxLength(9), Validators.minLength(5)]],
       email: [null, [Validators.required, Validators.email]],
-      passwordFormGroup: this.passwordFormGroup
-    });
-    this.passwordFormGroup = this.formBuilder.group({
-      password: [null, Validators.required],
-      repeatPassword: [null, Validators.required]
-    }, {
-      validator: RegistrationValidator.validate.bind(this)
+      passwords: this.formBuilder.group({
+        password: [null, Validators.required],
+        repeatPassword: [null, Validators.required]
+      }, {
+        validator: RegistrationValidator.validate.bind(this)
+      })
     });
   }
 
@@ -52,9 +50,9 @@ export class RegistrationComponent implements OnInit {
 
   onClickRegister() {
     this.open();
+    console.log(this.Users);
     this.Users.push(this.registrationFormGroup.value);
     this.registrationFormGroup.reset();
-    this.passwordFormGroup.reset();
     localStorage.setItem('user', JSON.stringify(this.Users));
   }
 

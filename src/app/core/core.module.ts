@@ -8,7 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatSnackBarModule} from '@angular/material';
-
+import {AuthGuard} from '../auth.guard';
+import {AuthService} from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import {MatButtonModule, MatSnackBarModule} from '@angular/material';
     BrowserAnimationsModule
   ],
   exports: [RouterModule],
-  declarations: [LoginComponent, RegistrationComponent]
+  declarations: [LoginComponent, RegistrationComponent],
+  providers: [AuthGuard, AuthService]
 })
 export class CoreModule { }
