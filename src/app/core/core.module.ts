@@ -18,7 +18,8 @@ import {MatButtonModule, MatSnackBarModule} from '@angular/material';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   exports: [RouterModule],
   declarations: [LoginComponent, RegistrationComponent]

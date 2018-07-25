@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {Router} from '@angular/router';
 
 
@@ -16,6 +16,11 @@ export class RegistrationComponent implements OnInit {
   show: Boolean = false;
   registrationFormGroup: FormGroup;
   passwordFormGroup: FormGroup;
+  message: string = 'The registration was successfully.';
+  actionButtonLabel: string = '';
+  action: Boolean = true;
+  setAutoHide: Boolean = true;
+  autoHide: number = 2000;
 
   constructor(private formBuilder: FormBuilder, public snackBar: MatSnackBar, private router: Router) {
     this.registrationFormGroup = this.formBuilder.group({
@@ -31,6 +36,12 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  open() {
+    const config = new MatSnackBarConfig();
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
+  }
+
   ngOnInit() {
   }
   showPassword() {
@@ -40,6 +51,7 @@ export class RegistrationComponent implements OnInit {
 
 
   onClickRegister() {
+    this.open();
     this.Users.push(this.registrationFormGroup.value);
     this.registrationFormGroup.reset();
     this.passwordFormGroup.reset();

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 
 @Component({
@@ -12,6 +12,13 @@ import {MatSnackBar} from '@angular/material';
 export class LoginComponent implements OnInit {
   show: Boolean = false;
   loginFormGroup: FormGroup;
+
+  message: string = 'Your password or email is incorrect';
+  actionButtonLabel: string = 'Try again';
+  action: Boolean = true;
+  setAutoHide: Boolean = true;
+  autoHide: number = 2000;
+
   constructor(private formBuilder: FormBuilder, private router: Router, public snackBar: MatSnackBar) {
     this.loginFormGroup = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
@@ -22,10 +29,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
+  open() {
+    const config = new MatSnackBarConfig();
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
   }
 
   showPassword() {
@@ -38,7 +45,7 @@ export class LoginComponent implements OnInit {
     if (userCheck) {
       this.router.navigate(['']);
     } else {
-     this.openSnackBar('Email or password is incorrect', 'Try again');
+     this.open();
     }
   }
 }
