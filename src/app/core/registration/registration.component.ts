@@ -1,25 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {Router} from '@angular/router';
 
 
-import { RegistrationValidator } from './registrationvalidator';
+import {RegistrationValidator} from './registrationvalidator';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.less']
+  styleUrls: ['./registration.component.less'],
 })
 export class RegistrationComponent implements OnInit {
   Users: Array<string> = [];
-  show: Boolean = false;
+  show = false;
   registrationFormGroup: FormGroup;
-  message: string = 'The registration was successfully.';
-  actionButtonLabel: string = '';
-  action: Boolean = true;
-  setAutoHide: Boolean = true;
-  autoHide: number = 2000;
+  message = 'The registration was successfully.';
+  actionButtonLabel = '';
+  action = true;
+  setAutoHide = true;
+  autoHide = 2000;
 
   constructor(private formBuilder: FormBuilder, public snackBar: MatSnackBar, private router: Router) {
     this.registrationFormGroup = this.formBuilder.group({
@@ -43,19 +43,15 @@ export class RegistrationComponent implements OnInit {
     this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
   }
 
-
   showPassword() {
+    console.log('Checking the view');
     this.show = !this.show;
   }
 
-
-
   onClickRegister() {
     this.open();
-    console.log(this.Users);
     this.Users.push(this.registrationFormGroup.value);
     this.registrationFormGroup.reset();
     localStorage.setItem('user', JSON.stringify(this.Users));
   }
-
 }
