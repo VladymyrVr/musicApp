@@ -34,14 +34,16 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+  }
+
   open() {
     const config = new MatSnackBarConfig();
     config.duration = this.setAutoHide ? this.autoHide : 0;
     this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
   }
 
-  ngOnInit() {
-  }
+
   showPassword() {
     this.show = !this.show;
   }
