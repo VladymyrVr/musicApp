@@ -1,7 +1,9 @@
 <header>
   <div class="wrapper">
     <h1><a routerLink="/">Music<span>Lover</span></a></h1>
-    <input type="text" autofocus placeholder="Find ..." />
+    <form (submit)="handleChange(value.value)">
+      <input #value type="text" autofocus placeholder="Find" />
+    </form>
     <a routerLink="/login" class="log-in" ></a>
   </div>
 </header>

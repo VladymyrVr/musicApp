@@ -23,8 +23,7 @@ export class RegistrationComponent implements OnInit {
   autoHide = 2000;
 
   constructor(private formBuilder: FormBuilder,
-              public snackBar: MatSnackBar,
-              private cd: ChangeDetectorRef ) {}
+              public snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.initForm();
@@ -41,7 +40,6 @@ export class RegistrationComponent implements OnInit {
         validator: RegistrationValidator.validate.bind(this)
       })
     });
-  this.cd.detectChanges();
   }
 
   open() {

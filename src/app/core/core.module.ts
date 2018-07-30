@@ -20,7 +20,7 @@ import {AuthService} from './services/auth.service';
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   exports: [RouterModule],
   declarations: [LoginComponent, RegistrationComponent],
