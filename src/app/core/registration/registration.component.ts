@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {Router} from '@angular/router';
@@ -10,6 +10,7 @@ import {RegistrationValidator} from './registrationvalidator';
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegistrationComponent implements OnInit {
   Users: Array<string> = [];
@@ -21,7 +22,15 @@ export class RegistrationComponent implements OnInit {
   setAutoHide = true;
   autoHide = 2000;
 
-  constructor(private formBuilder: FormBuilder, public snackBar: MatSnackBar, private router: Router) {
+  constructor(private formBuilder: FormBuilder,
+              public snackBar: MatSnackBar,
+              private cd: ChangeDetectorRef ) {}
+
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm () {
     this.registrationFormGroup = this.formBuilder.group({
       username: [null, [Validators.required, Validators.maxLength(9), Validators.minLength(5)]],
       email: [null, [Validators.required, Validators.email]],
@@ -32,9 +41,7 @@ export class RegistrationComponent implements OnInit {
         validator: RegistrationValidator.validate.bind(this)
       })
     });
-  }
-
-  ngOnInit() {
+  this.cd.detectChanges();
   }
 
   open() {
