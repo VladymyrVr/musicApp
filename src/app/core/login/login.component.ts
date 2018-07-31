@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {AuthService} from '../services/auth.service';
-
 
 @Component({
   selector: 'app-login',
@@ -13,12 +12,11 @@ import {AuthService} from '../services/auth.service';
 export class LoginComponent implements OnInit {
   show: Boolean = false;
   loginFormGroup: FormGroup;
-
-  message: string = 'Your password or email is incorrect';
-  actionButtonLabel: string = 'Try again';
-  action: Boolean = true;
-  setAutoHide: Boolean = true;
-  autoHide: number = 2000;
+  message = 'Your password or email is incorrect';
+  actionButtonLabel = 'Try again';
+  action = true;
+  setAutoHide = true;
+  autoHide = 2000;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -43,12 +41,12 @@ export class LoginComponent implements OnInit {
     this.show = !this.show;
   }
 
-  checkUser () {
+  checkUser() {
     const userCheck = JSON.parse(localStorage.getItem('user')).find((item) => {
       return (item.email === this.loginFormGroup.value.email && item.passwords.password === this.loginFormGroup.value.password);
     });
     if (userCheck) {
-     this.setLogged.setItem('userLogged', 'true');
+      this.setLogged.setItem('userLogged', 'true');
     }
     return userCheck;
   }
@@ -57,7 +55,7 @@ export class LoginComponent implements OnInit {
     if (this.checkUser()) {
       this.router.navigate(['']);
     } else {
-     this.showErorr();
+      this.showErorr();
     }
   }
 }

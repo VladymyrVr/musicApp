@@ -15,13 +15,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleChange(id: string) {
-    this.spotify.getArtists(id)
-      .subscribe(artists => {
-        console.log(artists);
-        this.artists = artists;
-      });
-
+  handleChange(artist: string) {
+    this.spotify.searchArtists(artist);
   }
 
 }

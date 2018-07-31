@@ -1,8 +1,6 @@
-import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
-import {Router} from '@angular/router';
-
 
 import {RegistrationValidator} from './registrationvalidator';
 
@@ -49,7 +47,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   showPassword() {
-    console.log('Checking the view');
     this.show = !this.show;
   }
 
