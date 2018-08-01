@@ -7,6 +7,7 @@ import {SpotifyService} from '../services/http-spotify.service';
   styleUrls: ['./music-dashboard.component.less']
 })
 export class MusicDashboardComponent implements OnInit {
+  public p = 1;
   public artists;
   public loading = true;
   constructor(private spotify: SpotifyService) {
@@ -16,6 +17,7 @@ export class MusicDashboardComponent implements OnInit {
     this.spotify.artist
       .subscribe(res => {
         this.artists = res;
+        console.log(this.artists);
         this.loading = false;
       });
   }
