@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpSpotifyService} from '../services/http-spotify.service';
-
+import {SpotifyService} from '../services/http-spotify.service';
+import {FormControl, Validators} from '@angular/forms';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,15 @@ import {HttpSpotifyService} from '../services/http-spotify.service';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
-  artists: any[] = [];
+  search = new FormControl(null,  Validators.required);
 
-  constructor(private spotify: HttpSpotifyService) {  }
+  constructor(private spotify: SpotifyService) {  }
 
   ngOnInit() {
-  }
-
-  handleChange(artist: string) {
-    this.spotify.searchArtists(artist);
-  }
-
+      this.search.valueChanges
+        .pipe(switchMap(value => this.spotify.searchArtists(value)))
+        .subscribe(artists => {
+          this.spotify.artist.next(artists);
+        });
+    }
 }

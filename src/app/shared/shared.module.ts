@@ -6,8 +6,9 @@ import {RouterModule} from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import {SharedRoutingModule} from './shared-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpSpotifyService} from './services/http-spotify.service';
+import {SpotifyService} from './services/http-spotify.service';
 import {HttpClientModule} from '@angular/common/http';
+import { MusicDashboardComponent } from './music-dashboard/music-dashboard.component';
 
 @NgModule({
   imports: [
@@ -18,10 +19,11 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   exports: [
     HeaderComponent,
+    MusicDashboardComponent,
     RouterModule,
     HttpClientModule
   ],
-  providers: [HttpSpotifyService],
-  declarations: [HeaderComponent]
+  providers: [SpotifyService],
+  declarations: [HeaderComponent, MusicDashboardComponent]
 })
 export class SharedModule { }

@@ -1,0 +1,15 @@
+<section class="artists-container">
+  <div class="wrapper">
+    <div *ngIf="loading">Enter for result music</div>
+
+    <ul *ngIf="!loading" class="artists-list">
+        <li *ngFor="let artist of artists">
+          <div class="img-wrapper">
+            <img [src]="artist.images[0] ? artist.images[0].url : '../../../assets/img/music-bc.jpeg'">
+          </div>
+          <p>{{artist.name}}</p>
+        </li>
+    </ul>
+  </div>
+</section>
+
