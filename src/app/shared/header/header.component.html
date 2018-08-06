@@ -15,16 +15,21 @@
         <nav>
           <ul class="nav-list">
             <li>
-              <a routerLink="" routerLinkActive="active-link" >Main</a>
+              <a routerLink=""
+                 routerLinkActive="active-link"
+                 [routerLinkActiveOptions]="{ exact: true }">Main</a>
             </li>
             <li>
-              <a [routerLink]="['/new-releases']" routerLinkActive="active-link">New Releases</a>
+              <a routerLink="./new-releases"
+                 routerLinkActive="active-link">New Releases</a>
             </li>
             <li>
-              <a routerLink="/top-tracks" routerLinkActive="active-link">Top Tracks</a>
+              <a routerLink="./top-tracks"
+                 routerLinkActive="active-link">Top Tracks</a>
             </li>
             <li>
-              <a routerLink="/dashboard" routerLinkActive="active-link">Artists</a>
+              <a routerLink="./artists"
+                 routerLinkActive="active-link">Artists</a>
             </li>
           </ul>
         </nav>

@@ -1,5 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { SpotifyService } from '../../shared/services/http-spotify.service';
+import { takeUntil } from 'rxjs/internal/operators';
+import { Subject } from 'rxjs/index';
 
 @Component({
   selector: 'app-new-releases',
@@ -7,15 +9,20 @@ import { SpotifyService } from '../../shared/services/http-spotify.service';
   styleUrls: ['./new-releases.component.less', '../music-dashboard/music-dashboard.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewReleasesComponent implements OnInit {
+export class NewReleasesComponent implements OnInit, OnDestroy {
   p = 1;
   releases;
   loading = false;
-  constructor(private spotify: SpotifyService, private  cdr: ChangeDetectorRef) { }
+
+  constructor(private spotify: SpotifyService, private  cdr: ChangeDetectorRef) {
+  }
+
+  private unsubscribe: Subject<void> = new Subject();
 
   ngOnInit() {
     this.loading = true;
     this.spotify.getNewReleases()
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe(res => {
           this.releases = res;
           this.loading = false;
@@ -27,6 +34,11 @@ export class NewReleasesComponent implements OnInit {
           console.error(error);
         }
       );
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
 }

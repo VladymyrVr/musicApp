@@ -1,109 +1,113 @@
 header {
   box-shadow: 0 -1px 0 0 #e5e5e5 inset;
+}
 
-  a {
-    text-decoration: none;
+a {
+  text-decoration: none;
+}
+
+h1 {
+  letter-spacing: .5px;
+
+  span {
+    color: #ff0000;
+  }
+}
+
+.wrapper {
+  max-width: 1140px;
+  height: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-top {
+  background: #f1f1f1;
+}
+
+.nav-list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  list-style: none;
+}
+
+.nav-list li a {
+  color: #737373;
+  display: block;
+  padding: 20px 14px;
+}
+
+.nav-list li:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.nav-list li .active-link {
+  color: #212121;
+  border-bottom: 3px solid #ef6c00;
+}
+
+input {
+  box-sizing: border-box;
+  display: block;
+  max-width: 500px;
+  width: 100%;
+  color: #212121;;
+  outline: none;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 2px;
+  -webkit-appearance: none;
+  line-height: inherit;
+  padding: 12px 50px;
+  border: 1px solid transparent;
+  transition: border 0.1s ease-out;
+  background: url('../../../assets/img/find.png') no-repeat 12px center, #f5f5f5;
+
+  &:focus {
+    background: url('../../../assets/img/find.png') no-repeat 12px center, white;
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12),
+    0 5px 5px -3px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.log-in {
+  display: block;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  outline: none;
+  background: transparent;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    border: 1px solid #ffa500;
   }
 
-  h1 {
-    letter-spacing: .5px;
-
-    span {
-      color: #ff0000;
-    }
+  &::before {
+    position: absolute;
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: url("../../../assets/img/log-in.png") no-repeat;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
+}
 
-  .wrapper {
-    max-width: 1140px;
-    height: 100%;
-    padding: 0 15px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .header-top {
-    background: #f1f1f1;
-  }
-
-  .nav-list {
-    display: flex;
-    padding: 0;
-    margin: 0;
-  }
-
-  .nav-list li {
-    list-style: none;
-    padding: 20px 0;
-  }
-
-  .nav-list li a {
-    color: #737373;
-    padding: 0 14px;
-  }
-
-  .nav-list li:hover {
-    background: rgba(0,0,0,0.05);
-  }
-
-  .active-link {
-    color: #333;
-  }
-
-
-  input {
-    box-sizing: border-box;
-    display: block;
-    max-width: 500px;
-    width: 100%;
-    color: #212121; ;
-    outline: none;
-    font-size: 16px;
-    font-weight: 400;
-    border-radius: 2px;
-    -webkit-appearance: none;
-    line-height: inherit;
-    padding: 12px 50px;
-    border: 1px solid transparent;
-    transition: border 0.1s ease-out;
-    background: url('../../../assets/img/find.png') no-repeat 12px center, #f5f5f5;
-
-    &:focus {
-      background: url('../../../assets/img/find.png') no-repeat 12px center, white;
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                  0 3px 14px 2px rgba(0, 0, 0, 0.12),
-                  0 5px 5px -3px rgba(0, 0, 0, 0.4);
-    }
-  }
-
-  .log-in {
-    display: block;
-    position: relative;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    outline: none;
-    background: transparent;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    padding: 0;
-
-    &:hover {
-      border: 1px solid #ffa500;
-    }
-
-    &::before {
-      position: absolute;
-      content: '';
-      width: 24px;
-      height: 24px;
-      background: url("../../../assets/img/log-in.png") no-repeat;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
+.active-link {
+  color: #212121;
 
 }
+

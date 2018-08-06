@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpotifyService } from './services/http-spotify.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MusicCardComponent } from './music-card/music-card.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [SpotifyService],
-  declarations: [HeaderComponent]
+  declarations: [HeaderComponent, MusicCardComponent]
 })
 export class SharedModule {
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { SpotifyService } from '../../shared/services/http-spotify.service';
 import { Subject } from 'rxjs/index';
 import { takeUntil } from 'rxjs/internal/operators';
