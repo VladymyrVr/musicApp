@@ -6,10 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatSnackBarModule} from '@angular/material';
-import {AuthGuard} from '../auth.guard';
-import {AuthService} from './services/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatSnackBarModule } from '@angular/material';
+import { AuthGuard } from '../auth.guard';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -26,4 +26,5 @@ import {AuthService} from './services/auth.service';
   declarations: [LoginComponent, RegistrationComponent],
   providers: [AuthGuard, AuthService]
 })
-export class CoreModule { }
+export class CoreModule {
+}

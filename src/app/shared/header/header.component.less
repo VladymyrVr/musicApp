@@ -1,5 +1,4 @@
 header {
-  height: 100px;
   box-shadow: 0 -1px 0 0 #e5e5e5 inset;
 
   a {
@@ -23,6 +22,35 @@ header {
     align-items: center;
     justify-content: space-between;
   }
+
+  .header-top {
+    background: #f1f1f1;
+  }
+
+  .nav-list {
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-list li {
+    list-style: none;
+    padding: 20px 0;
+  }
+
+  .nav-list li a {
+    color: #737373;
+    padding: 0 14px;
+  }
+
+  .nav-list li:hover {
+    background: rgba(0,0,0,0.05);
+  }
+
+  .active-link {
+    color: #333;
+  }
+
 
   input {
     box-sizing: border-box;

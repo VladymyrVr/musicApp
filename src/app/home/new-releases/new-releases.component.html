@@ -1,0 +1,41 @@
+<section class="new-releases-container">
+  <div *ngIf="loading; else new_releases_list"
+       class="load-wrapper">
+      <div class="lds-facebook"><div></div><div></div><div></div></div>
+  </div>
+  <ng-template #new_releases_list>
+    <div class="wrapper">
+    <ul class="new-releases-list">
+        <li *ngFor="let release of releases | paginate: {itemsPerPage: 20,
+                                                       currentPage: p,
+                                                       id: id
+                                                       }">
+          <div class="img-wrapper">
+            <img [src]="release.images[0] ? release.images[0].url : '../../../assets/img/music-bc.jpeg'"
+                 [alt]="release.name"
+                 [title]="release.name">
+            <span class="preview-overlay-container"></span>
+          </div>
+          <div class="artist-information">
+            <p *ngFor="let artist of release.artists" class="artist-name">{{artist.name}}</p>
+          </div>
+          <div class="release-information">
+            <p>{{release.name}}</p>
+          </div>
+          <div class="release-action">
+            <p class="release-date"
+               title="Release date">{{release.release_date}}</p>
+            <a [href]="release.external_urls.spotify"
+               target="_blank"
+               class="spotify-listen"></a>
+          </div>
+        </li>
+    </ul>
+    <pagination-controls *ngIf="releases.length; else not_found_request"
+                         (pageChange)="p = $event"></pagination-controls>
+    <ng-template #not_found_request>
+      <span class="not-found-request">Unable to find anythig on your request.</span>
+    </ng-template>
+    </div>
+  </ng-template>
+</section>

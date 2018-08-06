@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {SpotifyService} from '../services/http-spotify.service';
 import {FormControl, Validators} from '@angular/forms';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, debounceTime } from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/internal/operators';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.less']
+  styleUrls: ['./header.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
   search = new FormControl(null,  Validators.required);
@@ -15,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
       this.search.valueChanges
-        .pipe(switchMap(value => this.spotify.searchArtists(value)))
+        .pipe(switchMap(value => this.spotify.searchArtists(value)), debounceTime(500), distinctUntilChanged())
         .subscribe(artists => {
           this.spotify.artist.next(artists);
         });

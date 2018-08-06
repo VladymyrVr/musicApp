@@ -99,7 +99,7 @@ input:focus::placeholder {
   align-self: flex-start;
 }
 
-.buttons-group button {
+button {
   margin-right: 25px;
   padding: 10px 20px;
   background: #0000ff;
@@ -115,6 +115,11 @@ input:focus::placeholder {
     background: transparent;
     border: 1px solid #0000ff;
   }
+}
+
+button:disabled {
+  background: #cccccc;
+  border: 1px solid transparent;
 }
 
 a {
