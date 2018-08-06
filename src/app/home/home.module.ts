@@ -8,6 +8,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TopTracksComponent } from './top-tracks/top-tracks.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { RouterModule } from '@angular/router';
     NgxPaginationModule,
     RouterModule
   ],
-  declarations: [HomeComponent, MusicDashboardComponent, TopTracksComponent, NewReleasesComponent],
+  declarations: [HomeComponent, MusicDashboardComponent, TopTracksComponent, NewReleasesComponent, DashboardComponent],
 })
 
 export class HomeModule {

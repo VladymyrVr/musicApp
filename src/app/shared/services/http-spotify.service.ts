@@ -14,9 +14,9 @@ export class SpotifyService {
   artist = new Subject<any>();
   getQuery(query: string) {
     const url = `https://api.spotify.com/v1/${ query }`;
-    const access_token = 'BQCFCa_k1GulGS-_wQ68PKyRK9RxNZbWoLy13nrO_dJ0dPv' +
-      'DDh89I2RAQ6WNcCESKFOTclfS2kJTRDI3DAcAGo0O-p49jnf3LsZ5xrJ' +
-      'HFq15aXpPjo8OazArev2qdxZXZXbcrSxAJKtmbHxnpeqDN8rbyoSgHnUarG7JmRleJZdUICgB8g';
+    const access_token = 'BQAiyhVrZa1dfYo7ElBhAm6VP6RkOKjyL' +
+      'hNuTlXvQkYWT5iVV-sZvkpfh9hRXk7O6QT1kVZHcf0eol8X5XcQntk3h2jgWs45' +
+      'OagOYAvoZqccvb2FfI8z8A1ZhGkDAdbekiiZhEWitjcE4BTLMGT_WlNvbGbf6xEKFL05bnVj-l9wPKwa0A';
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + access_token
     });

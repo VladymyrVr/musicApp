@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy, Output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { SpotifyService } from '../../shared/services/http-spotify.service';
 import { Subject } from 'rxjs/index';
 import { takeUntil } from 'rxjs/internal/operators';
+import { Artists } from '../../shared/models/artists';
 
 @Component({
   selector: 'app-music-dashboard',
@@ -11,7 +12,7 @@ import { takeUntil } from 'rxjs/internal/operators';
 })
 export class MusicDashboardComponent implements OnInit, OnDestroy {
   p = 1;
-  artists;
+  artists: Artists[];
   loading = false;
 
   constructor(private spotify: SpotifyService, private  cdr: ChangeDetectorRef) {

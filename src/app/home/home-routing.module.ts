@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { MusicDashboardComponent } from './music-dashboard/music-dashboard.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { TopTracksComponent } from './top-tracks/top-tracks.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -11,9 +12,10 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'artists', component: MusicDashboardComponent },
+      { path: 'dashboard', component: DashboardComponent},
       { path: 'new-releases', component: NewReleasesComponent },
       { path: 'top-tracks', component: TopTracksComponent },
-      { path: '', redirectTo: 'artists', pathMatch: 'full'},
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]
   },
 ];
