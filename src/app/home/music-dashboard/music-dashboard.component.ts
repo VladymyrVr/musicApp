@@ -14,16 +14,15 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
   p = 1;
   artists: Artist[];
   loading = false;
+  private unsubscribe$ = new Subject();
 
   constructor(private spotify: SpotifyService, private  cdr: ChangeDetectorRef) {
   }
 
-  private unsubscribe: Subject<void> = new Subject();
-
   ngOnInit() {
     this.loading = true;
     this.spotify.artist
-      .pipe(takeUntil(this.unsubscribe))
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe(res => {
           this.artists = res;
           this.loading = false;
@@ -37,7 +36,7 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
