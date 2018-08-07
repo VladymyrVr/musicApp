@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRe
 import { SpotifyService } from '../../shared/services/http-spotify.service';
 import { Subject } from 'rxjs/index';
 import { takeUntil } from 'rxjs/internal/operators';
-import { Artists } from '../../shared/models/artists';
+import { Artist } from '../../shared/models/artist';
 
 @Component({
   selector: 'app-music-dashboard',
@@ -12,7 +12,7 @@ import { Artists } from '../../shared/models/artists';
 })
 export class MusicDashboardComponent implements OnInit, OnDestroy {
   p = 1;
-  artists: Artists[];
+  artists: Artist[];
   loading = false;
 
   constructor(private spotify: SpotifyService, private  cdr: ChangeDetectorRef) {

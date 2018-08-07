@@ -1,4 +1,4 @@
-export interface Releases {
+export interface Release {
   id: string;
   href: string;
   genres: Array<Object>;

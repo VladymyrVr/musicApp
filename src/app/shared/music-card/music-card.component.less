@@ -1,0 +1,160 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.music-card {
+  background: #ffffff;
+  list-style: none;
+  max-width: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+  border-radius: 2px;
+  margin-bottom: 25px;
+}
+
+.img-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.preview-overlay-container {
+  display: block;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  opacity: 0;
+  transition: all .25s ease;
+  background: rgba(0, 0, 0, .4);
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.preview-overlay-container:hover {
+  opacity: 1;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.artist-information, .release-information {
+  padding: 0 10px;
+  width: 180px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-grow: 2;
+  justify-content: space-between;
+}
+
+.artist-name {
+  color: #737373;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 20px;
+}
+
+.release-name {
+  color: #cccccc;
+  line-height: 18px;
+  font-size: 18px;
+}
+
+.artists-name {
+  margin-bottom: 5px;
+}
+
+.genres {
+  margin-top: 1em;
+}
+
+.genres-identifier {
+  margin-right: 5px;
+  color: #616161;
+}
+
+.albbum-type {
+  display: inline-block;
+  padding: 4px;
+  margin-top: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  background: #cccccc;
+}
+
+.genres-item {
+  display: inline-block;
+  padding: 4px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  background: #cccccc;
+  margin-right: 6px;
+}
+
+.card-action {
+  display: flex;
+  width: 180px;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-grow: 2;
+  padding: 1em 0;
+}
+
+.followers {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 30px;
+}
+
+.followers::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("../../../assets/img/followers.png") no-repeat;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.release-date {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 30px;
+}
+
+.release-date::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("../../../assets/img/calendar.png") no-repeat;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.spotify-listen {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("../../../assets/img/spotify.png") no-repeat;
+}

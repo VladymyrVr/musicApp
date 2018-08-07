@@ -1,4 +1,4 @@
-export interface Artists {
+export interface Artist {
   external_urls: {};
   followers: {};
   id: string;

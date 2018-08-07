@@ -1,3 +1,50 @@
-<p>
-  music-card works!
-</p>
+<div class="music-card">
+  <div class="img-wrapper">
+    <img [src]="item.images[0] ? item.images[0].url : '../../../assets/img/music-bc.jpeg'"
+         [alt]="item.name"
+         [title]="item.name">
+    <span class="preview-overlay-container"></span>
+  </div>
+
+  <div *ngIf="item.release_date"
+       class="release-information">
+    <div class="artists-information">
+      <p *ngFor="let artist of item.artists"
+         class="artist-name artists-name">{{artist.name}}</p>
+    </div>
+    <div class="release-detail">
+       <p class="release-name">{{item.name}}</p>
+      <p class="albbum-type">{{item.album_type}}</p>
+    </div>
+    <div class="card-action">
+       <p class="release-date"
+          title="Release date">{{item.release_date}}</p>
+       <a [href]="item.external_urls.spotify"
+          target="_blank"
+          class="spotify-listen"></a>
+    </div>
+  </div>
+
+  <div *ngIf="item.genres"
+       class="artist-information">
+    <p class="artist-name">
+      {{item.name}}
+    </p>
+    <div class="genres">
+      <span *ngIf="item.genres[0]"
+            class="genres-identifier">genres:</span>
+      <span class="genres-item"
+            *ngFor="let genre of item.genres | slice:0:2">{{genre}}</span>
+    </div>
+    <div
+      class="card-action">
+      <p class="followers"
+         title="Followers">{{item.followers.total}}</p>
+      <a [href]="item.external_urls.spotify"
+         target="_blank"
+         class="spotify-listen"></a>
+    </div>
+  </div>
+</div>
+
+

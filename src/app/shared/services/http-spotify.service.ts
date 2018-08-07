@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs/index';
 import { map } from 'rxjs/operators';
-import { Artists } from '../models/artists';
+import { Artists } from '../models/artist';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,10 @@ export class SpotifyService {
   artist = new Subject<any>();
   getQuery(query: string) {
     const url = `https://api.spotify.com/v1/${ query }`;
-    const access_token = 'BQAiyhVrZa1dfYo7ElBhAm6VP6RkOKjyL' +
-      'hNuTlXvQkYWT5iVV-sZvkpfh9hRXk7O6QT1kVZHcf0eol8X5XcQntk3h2jgWs45' +
-      'OagOYAvoZqccvb2FfI8z8A1ZhGkDAdbekiiZhEWitjcE4BTLMGT_WlNvbGbf6xEKFL05bnVj-l9wPKwa0A';
+    const access_token = 'BQCZEwZ3A_ZLhZ4-2tQGaxlx1tFFyPdkydeL' +
+      'AjzOoHshSS7KPeBD-Nu8Ww6p64rbrhKnuhsvR23WZH96-Qyng1H' +
+      'Kg6uVhB8iD4bgEWrjdgFothf7KH9YaZHG7l1t5IRRv2XK' +
+      'PYb_wO_cibsnrLSJ-4Odl0Ck0fuXav3nyqGtnnxRML5h3Q';
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + access_token
     });

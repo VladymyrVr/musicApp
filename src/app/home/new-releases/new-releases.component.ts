@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRe
 import { SpotifyService } from '../../shared/services/http-spotify.service';
 import { takeUntil } from 'rxjs/internal/operators';
 import { Subject } from 'rxjs/index';
-import { Releases } from '../../shared/models/releases';
+import { Release } from '../../shared/models/release';
 
 @Component({
   selector: 'app-new-releases',
@@ -11,8 +11,8 @@ import { Releases } from '../../shared/models/releases';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewReleasesComponent implements OnInit, OnDestroy {
-  p = 1;
-  releases: Releases[];
+  p = 1
+  releases: Release[];
   loading = false;
 
   constructor(private spotify: SpotifyService, private  cdr: ChangeDetectorRef) {
@@ -28,6 +28,7 @@ export class NewReleasesComponent implements OnInit, OnDestroy {
           this.releases = res;
           this.loading = false;
           this.cdr.detectChanges();
+          console.log(this.releases);
         },
         (error) => {
           this.loading = false;
