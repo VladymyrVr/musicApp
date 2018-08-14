@@ -9,12 +9,17 @@
   <div *ngIf="item.release_date"
        class="release-information">
     <div class="artists-information">
-      <p *ngFor="let artist of item.artists"
-         class="artist-name artists-name">{{artist.name}}</p>
+      <a [href]="item.external_urls.spotify"
+         class="artist-name artists-name"
+         [title]="item.artists[0].name">{{item.artists[0].name | slice:0:12}}
+        <span *ngIf="item.artists[0].name.length > 12"> ...</span>
+      </a>
     </div>
-    <div class="release-detail">
-       <p class="release-name">{{item.name}}</p>
-      <p class="albbum-type">{{item.album_type}}</p>
+    <div class="album-container">
+        <p class="release-name"
+           [title]="item.name">{{item.name | slice:0:9}}
+        <span *ngIf="item.name.length > 9"> ...</span></p>
+      <span class="albbum-type">{{item.album_type}}</span>
     </div>
     <div class="card-action">
        <p class="release-date"
@@ -44,6 +49,19 @@
          target="_blank"
          class="spotify-listen"></a>
     </div>
+  </div>
+
+  <div *ngIf="item.owner" class="playlist-information">
+    <p class="playlist-name"
+       [title]="item.name">{{item.name | slice:0:15}}
+        <span *ngIf="item.name.length > 9"> ...</span></p>
+    <div class="card-action">
+       <p class="playlist-count">Total: <span>{{item.tracks.total}}</span></p>
+       <a [href]="item.external_urls.spotify"
+          target="_blank"
+          class="spotify-listen"></a>
+    </div>
+
   </div>
 </div>
 

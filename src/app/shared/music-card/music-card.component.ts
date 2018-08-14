@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Artist } from '../models/artist';
 import { Release } from '../models/release';
+import { Playlist } from '../models/playlist';
+import { ItemPlaylist } from '../models/item-playlist';
 
 @Component({
   selector: 'app-music-card',
@@ -9,7 +11,7 @@ import { Release } from '../models/release';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MusicCardComponent implements OnInit {
-  @Input() item: Artist | Release;
+  @Input() item: Artist | Release | Playlist | ItemPlaylist;
 
   constructor() {
   }

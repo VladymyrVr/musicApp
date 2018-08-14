@@ -1,17 +1,18 @@
-<section class="artists-container">
+<section class="music-container">
   <app-loader *ngIf="loading; else artist_list"></app-loader>
   <ng-template #artist_list>
     <div class="wrapper">
+      <h2 *ngIf="message">{{message}}</h2>
       <div class="flex-wrapper">
-        <app-music-card *ngFor="let artist of artists | paginate: {itemsPerPage: 20,
+        <app-music-card *ngFor="let dataItem of data |  paginate: {itemsPerPage: 18,
                                                         currentPage: p,
                                                         id: id
                                                         }"
-                        [item]="artist"></app-music-card>
+                        [item]="dataItem"></app-music-card>
       </div>
-       <pagination-controls *ngIf="artists.length > 20;"
+       <pagination-controls *ngIf="data.length > 20;"
                             (pageChange)="p = $event"></pagination-controls>
-      <span *ngIf="!artists.length" class="not-found-request">Unable to find anything on your request.</span>
+      <span *ngIf="!data.length" class="not-found-request">Unable to find anything on your request.</span>
     </div>
   </ng-template>
 </section>
