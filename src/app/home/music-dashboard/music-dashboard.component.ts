@@ -28,8 +28,7 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
   //   spotifyFunction()
   //     .pipe(takeUntil(this.unsubscribe$))
   //     .subscribe(res => {
-  //         this.data = res;
-  //         this.loading = false;
+  //         this.data = res;  //         this.loading = false;
   //         this.cdr.detectChanges();
   //       },
   //       (error) => {
