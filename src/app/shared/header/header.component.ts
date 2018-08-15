@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
     this.search.valueChanges
       .pipe(switchMap(value => this.spotify.searchArtists(value)), debounceTime(500), distinctUntilChanged())
       .subscribe(artists => {
-        console.log(artists);
         this.spotify.artist.next(artists);
       });
     this.search.setValue('Jazz');

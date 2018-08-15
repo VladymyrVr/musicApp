@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpotifyService } from '../../shared/services/http-spotify.service';
-import { Observable, Subject } from 'rxjs/index';
+import {  Subject } from 'rxjs/index';
 import { takeUntil } from 'rxjs/internal/operators';
 import { Artist } from '../../shared/models/artist';
 import { Release } from '../../shared/models/release';
-import { Playlist } from '../../shared/models/playlist';
 import { ItemPlaylist } from '../../shared/models/item-playlist';
 
 @Component({
