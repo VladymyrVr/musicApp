@@ -6,7 +6,6 @@ import { switchMap, takeUntil } from 'rxjs/internal/operators';
 import { Artist } from '../../shared/models/artist';
 import { Release } from '../../shared/models/release';
 import { ItemPlaylist } from '../../shared/models/item-playlist';
-import { Track } from '../../shared/models/track';
 import { TrackItem } from '../../shared/models/track-item';
 
 @Component({
@@ -26,19 +25,6 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
               private  cdr: ChangeDetectorRef,
               private route: ActivatedRoute) {
   }
-
-  // getData(spotifyFunction: () => any) {
-  //   spotifyFunction()
-  //     .pipe(takeUntil(this.unsubscribe$))
-  //     .subscribe(res => {
-  //         this.data = res;  //         this.loading = false;
-  //         this.cdr.detectChanges();
-  //       },
-  //       (error) => {
-  //         this.loading = false;
-  //         console.error(error);
-  //       });
-  // }
 
   ngOnInit() {
     this.loading = true;

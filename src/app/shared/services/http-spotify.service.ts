@@ -20,8 +20,9 @@ export class SpotifyService {
 
   getQuery(query: string) {
     const url = `https://api.spotify.com/v1/${ query }`;
-    const access_token = 'BQCGywmjS55w-SgzUpgnLmgvlMSfsJ8PSBhEC6cRd_Rrq2lfx1K' +
-      '6fMgDN2iGayL8aIQBXjzMNo9CIEiS19dnxLZw99nGCbpz_58Sg66AEROczi8ujts8kiargb23NEMimpt-DNRtYYLGTXYA3o9oYmQByEdvGX8WZdpN5GuEeCrowW7bIA';
+    const access_token = 'BQCucwoLqylX48noImMMq_y2nt_HJWBVjpZF_al3w7Alsd' +
+      'zcH9odSoTtUvgIg-6BTXMIH7vB8DPoz-5kNUWsevhp3AsnYvQcphIIs7bKspwlFl' +
+      'c8jeT0Uqtk1TrYsUotImKk8cthBcTSc-VUA-Pa_f9l9BdEFpvlK6veZDeRjFPnEwqHRA';
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + access_token
     });
@@ -37,7 +38,7 @@ export class SpotifyService {
     return new Observable(null);
   }
 
-  getMainData() {
+  getMainData(): Observable<[Release[], Playlist, ItemCategories[] ]> {
     return forkJoin(this.getNewReleases(), this.getRecommendations(), this.getCategories());
   }
 

@@ -14,10 +14,10 @@ import { Subject } from 'rxjs/index';
 })
 
 export class DashboardComponent implements OnInit, OnDestroy {
-  private unsubscribe$ = new Subject();
   releases: Release[];
   playlist: ItemPlaylist[];
   categories: ItemCategories[];
+  private unsubscribe$ = new Subject();
 
   constructor(private spotify: SpotifyService,
               private cdr: ChangeDetectorRef) {

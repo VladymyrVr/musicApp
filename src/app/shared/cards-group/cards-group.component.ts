@@ -5,15 +5,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './cards-group.component.html',
   styleUrls: ['./cards-group.component.less']
 })
-export class CardsGroupComponent implements OnInit {
+export class CardsGroupComponent {
   @Input() data;
   counter = 6;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
   onChanged(count: number) {
     this.counter = count;
