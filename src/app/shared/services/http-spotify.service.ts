@@ -6,6 +6,8 @@ import { Artist } from '../models/artist';
 import { Release } from '../models/release';
 import { Playlist } from '../models/playlist';
 import { ItemCategories } from '../models/item-categories';
+import { ItemPlaylist } from '../models/item-playlist';
+import { TrackItem } from '../models/track-item';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +20,8 @@ export class SpotifyService {
 
   getQuery(query: string) {
     const url = `https://api.spotify.com/v1/${ query }`;
-    const access_token = 'BQA77EOH7HnszZ0V-HWORncKUkXTiVHeqlZ5WFr1d' +
-      'WmL_i1dbb5s0RLe00P-amXxZ678FQzo38NSsIwzTnbiTg9Ph_iktR-U' +
-      'OBpSZguUgOkhF_w-WA62N0I2Zx7ebEhBYRPup0fAlyoBdqAgyyw' +
-      '3W6-QfL6s-tyKR-KKlDFqu5dYZRjv6A';
+    const access_token = 'BQCGywmjS55w-SgzUpgnLmgvlMSfsJ8PSBhEC6cRd_Rrq2lfx1K' +
+      '6fMgDN2iGayL8aIQBXjzMNo9CIEiS19dnxLZw99nGCbpz_58Sg66AEROczi8ujts8kiargb23NEMimpt-DNRtYYLGTXYA3o9oYmQByEdvGX8WZdpN5GuEeCrowW7bIA';
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + access_token
     });
@@ -42,7 +42,7 @@ export class SpotifyService {
   }
 
   getNewReleases(): Observable<Release[]> {
-    return this.getQuery('browse/new-releases?limit=50')
+    return this.getQuery('browse/new-releases?country=US&limit=50')
       .pipe(map(data => data['albums'].items));
   }
 
@@ -51,12 +51,23 @@ export class SpotifyService {
       .pipe(map(data => data['categories'].items));
   }
 
+  getCategoriesPlaylist(id: string): Observable<ItemPlaylist[]> {
+    return this.getQuery(`browse/categories/${id}/playlists?limit=50`)
+      .pipe(map(data => data['playlists'].items));
+  }
+
+  getPlaylistsTracks(id: string): Observable<TrackItem[]> {
+    return this.getQuery(`users/spotify/playlists/${id}/tracks`)
+      .pipe(map(data => {
+        return data['items'];
+      }));
+  }
+
   getRecommendations(): Observable<Playlist> {
     return <Observable<Playlist>>this.getQuery(`browse/featured-playlists?country=US&timestamp=
     ${new Date().toISOString().slice(0, 19)}&offset=0&limit=50`)
-      .pipe(map(data => {
-        return data;
-      }));
+      .pipe(map(data => data
+      ));
   }
 
 }

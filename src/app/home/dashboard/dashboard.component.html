@@ -7,19 +7,14 @@
            alt="Spotify banner">
     </div>
     </a>
-    <h2>New Releases</h2>
-    <div class="flex-wrapper">
-      <app-music-card *ngFor="let item of releases | slice:0:6" [item]="item"></app-music-card>
+    <div *ngIf="releases">
+        <app-cards-group [data]="releases">New Releases</app-cards-group>
     </div>
-    <h2>Playlists</h2>
-    <div class="flex-wrapper">
-      <app-music-card *ngFor="let data of playlist | slice:0:6" [item]="data"></app-music-card>
+    <div *ngIf="playlist">
+      <app-cards-group [data]="playlist">Playlists</app-cards-group>
     </div>
-    <h2>Categories</h2>
-    <div class="flex-wrapper">
-      <app-music-card *ngFor="let item of categories | slice:0:6" [item]="item"></app-music-card>
+    <div *ngIf="categories">
+       <app-cards-group [data]="categories">Categories</app-cards-group>
     </div>
-
-
   </div>
 </section>

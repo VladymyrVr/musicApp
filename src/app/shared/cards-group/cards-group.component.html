@@ -1,0 +1,9 @@
+<div class="header-group">
+          <h2><ng-content></ng-content></h2>
+          <app-more-button (onChanged)="onChanged($event)"></app-more-button>
+    </div>
+    <div class="flex-wrapper">
+      <app-music-card *ngFor="let item of data | slice:0:counter"
+                      [item]="item">
+      </app-music-card>
+    </div>

@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpotifyService } from '../../shared/services/http-spotify.service';
-import {  Subject } from 'rxjs/index';
-import { takeUntil } from 'rxjs/internal/operators';
+import { Subject } from 'rxjs/index';
+import { switchMap, takeUntil } from 'rxjs/internal/operators';
 import { Artist } from '../../shared/models/artist';
 import { Release } from '../../shared/models/release';
 import { ItemPlaylist } from '../../shared/models/item-playlist';
+import { Track } from '../../shared/models/track';
+import { TrackItem } from '../../shared/models/track-item';
 
 @Component({
   selector: 'app-music-dashboard',
@@ -15,12 +17,14 @@ import { ItemPlaylist } from '../../shared/models/item-playlist';
 })
 export class MusicDashboardComponent implements OnInit, OnDestroy {
   p = 1;
-  data: Artist[] | Release[] | ItemPlaylist[];
+  data: Artist[] | Release[] | ItemPlaylist[] | TrackItem[];
   message: string;
   loading = false;
   private unsubscribe$ = new Subject();
 
-  constructor(private spotify: SpotifyService, private  cdr: ChangeDetectorRef, private route: ActivatedRoute) {
+  constructor(private spotify: SpotifyService,
+              private  cdr: ChangeDetectorRef,
+              private route: ActivatedRoute) {
   }
 
   // getData(spotifyFunction: () => any) {
@@ -42,7 +46,6 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
       this.spotify.artist
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe(res => {
-            console.log(res);
             this.data = res;
             this.loading = false;
             this.cdr.detectChanges();
@@ -64,13 +67,12 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
             this.loading = false;
             console.error(error);
           }
-        ) : this.route.snapshot.data['topTrack'] ?
+        ) : this.route.snapshot.data['playlist'] ?
         this.spotify.getRecommendations()
           .pipe(takeUntil(this.unsubscribe$))
           .subscribe(res => {
               this.data = res.playlists.items;
               this.message = res.message;
-              console.log(this.data);
               this.loading = false;
               this.cdr.detectChanges();
             },
@@ -78,7 +80,25 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
               this.loading = false;
               console.error(error);
             }
-          ) : this.loading = false;
+          ) : this.route.snapshot.data['playlistItem'] ?
+          this.route.params
+            .pipe(takeUntil(this.unsubscribe$),
+              switchMap(params => this.spotify.getCategoriesPlaylist(params['id'])))
+            .subscribe(res => {
+                this.data = res;
+                this.loading = false;
+                this.cdr.detectChanges();
+              }
+            ) : this.route.snapshot.data['trackItem'] ?
+            this.route.params
+              .pipe(takeUntil(this.unsubscribe$),
+                switchMap(params => this.spotify.getPlaylistsTracks(params['id'])))
+              .subscribe(res => {
+                  this.data = res;
+                  this.loading = false;
+                  this.cdr.detectChanges();
+                }
+              ) : this.loading = false;
   }
 
   ngOnDestroy() {
