@@ -11,6 +11,7 @@
 
 .music-card {
   background: #ffffff;
+  position: relative;
   list-style: none;
   width: 100%;
   display: flex;
@@ -185,4 +186,20 @@ img {
   width: 24px;
   height: 24px;
   background: url("../../../assets/img/spotify.png") no-repeat;
+}
+
+.favorite-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: url("../../../assets/img/favorites.png") no-repeat;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.favorite-button:hover {
+  background: url("../../../assets/img/favorites-hover.png") no-repeat;
 }

@@ -20,9 +20,8 @@ export class SpotifyService {
 
   getQuery(query: string) {
     const url = `https://api.spotify.com/v1/${ query }`;
-    const access_token = 'BQCucwoLqylX48noImMMq_y2nt_HJWBVjpZF_al3w7Alsd' +
-      'zcH9odSoTtUvgIg-6BTXMIH7vB8DPoz-5kNUWsevhp3AsnYvQcphIIs7bKspwlFl' +
-      'c8jeT0Uqtk1TrYsUotImKk8cthBcTSc-VUA-Pa_f9l9BdEFpvlK6veZDeRjFPnEwqHRA';
+    const access_token = 'BQCYCxcePsN5H2zKGSz9KqDu-dHbdFhCIBwS8U8qH' +
+      'pJWqb9PsHwJp7Dw163mkWM1gGGTgkoNr8SYJ-HOJ3BYD4KQp4MZbq2FWhdF-7Bdk-oZAOC6wzKxdtU_Qp80wTdWjThuYYb_pwPPHV_3vb4g5vmRYlBduNdNY8EXHlif25-AEsd34w';
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + access_token
     });

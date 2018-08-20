@@ -82,12 +82,14 @@
          class="spotify-listen"></a>
     </div>
   </div>
- <a [routerLink]="['../playlists/tracks', item.id]">
+
   <div *ngIf="item.owner"
        class="playlist-information">
+    <a [routerLink]="['../playlists/tracks', item.id]">
     <p class="playlist-name"
        [title]="item.name">{{item.name | slice:0:15}}
         <span *ngIf="item.name.length > 9"> ...</span></p>
+     </a>
     <div class="card-action">
        <p class="playlist-count">Total: <span>{{item.tracks.total}}</span></p>
        <a [href]="item.external_urls.spotify"
@@ -95,7 +97,7 @@
           class="spotify-listen"></a>
     </div>
   </div>
- </a>
+  <button class="favorite-button"></button>
 </div>
 
 
