@@ -7,22 +7,26 @@ import { SpotifyService } from './services/http-spotify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MusicCardComponent } from './music-card/music-card.component';
 import { LoaderComponent } from './loader/loader.component';
+import { MoreButtonComponent } from './buttons/more-button/more-button.component';
+import { CardsGroupComponent } from './cards-group/cards-group.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     HeaderComponent,
     HttpClientModule,
     MusicCardComponent,
-    LoaderComponent
+    LoaderComponent,
+    MoreButtonComponent,
+    CardsGroupComponent
   ],
   providers: [SpotifyService],
-  declarations: [HeaderComponent, MusicCardComponent, LoaderComponent]
+  declarations: [HeaderComponent, MusicCardComponent, LoaderComponent, MoreButtonComponent, CardsGroupComponent]
 })
 export class SharedModule {
 }

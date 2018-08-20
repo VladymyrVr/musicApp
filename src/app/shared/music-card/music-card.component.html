@@ -1,9 +1,40 @@
 <div class="music-card">
-  <div class="img-wrapper">
+  <div *ngIf="item.images"
+       class="img-wrapper">
     <img [src]="item.images[0] ? item.images[0].url : '../../../assets/img/music-bc.jpeg'"
          [alt]="item.name"
          [title]="item.name">
     <span class="preview-overlay-container"></span>
+  </div>
+
+  <div *ngIf="item.track"
+       class="track-information">
+    <div class="img-wrapper">
+      <img [src]="item.track.album.images[0] ? item.track.album.images[0].url : '../../../assets/img/music-bc.jpeg'"
+           [alt]="item.track.name"
+           [title]="item.track.name">
+    <span class="preview-overlay-container"></span>
+    </div>
+    <div class="categories-name"
+         [title]="item.track.name">{{item.track.name | slice:0:12}}
+      <span *ngIf="item.track.name.length > 12"> ...</span>
+    </div>
+  </div>
+
+  <div *ngIf="item.icons"
+       class="categories-information">
+    <a [routerLink]="['../playlists', item.id]">
+    <div class="img-wrapper">
+      <img [src]="item.icons[0] ? item.icons[0].url : '../../../assets/img/music-bc.jpeg'"
+           [alt]="item.name"
+           [title]="item.name">
+    <span class="preview-overlay-container"></span>
+    </div>
+    <div class="categories-name"
+         [title]="item.name">{{item.name | slice:0:12}}
+      <span *ngIf="item.name.length > 12"> ...</span>
+    </div>
+    </a>
   </div>
 
   <div *ngIf="item.release_date"
@@ -11,6 +42,7 @@
     <div class="artists-information">
       <a [href]="item.external_urls.spotify"
          class="artist-name artists-name"
+         target="_blank"
          [title]="item.artists[0].name">{{item.artists[0].name | slice:0:12}}
         <span *ngIf="item.artists[0].name.length > 12"> ...</span>
       </a>
@@ -51,18 +83,21 @@
     </div>
   </div>
 
-  <div *ngIf="item.owner" class="playlist-information">
+  <div *ngIf="item.owner"
+       class="playlist-information">
+    <a [routerLink]="['../playlists/tracks', item.id]">
     <p class="playlist-name"
        [title]="item.name">{{item.name | slice:0:15}}
         <span *ngIf="item.name.length > 9"> ...</span></p>
+     </a>
     <div class="card-action">
        <p class="playlist-count">Total: <span>{{item.tracks.total}}</span></p>
        <a [href]="item.external_urls.spotify"
           target="_blank"
           class="spotify-listen"></a>
     </div>
-
   </div>
+  <button class="favorite-button"></button>
 </div>
 
 

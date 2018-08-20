@@ -7,7 +7,14 @@
            alt="Spotify banner">
     </div>
     </a>
-
-
+    <div *ngIf="releases">
+        <app-cards-group [data]="releases">New Releases</app-cards-group>
+    </div>
+    <div *ngIf="playlist">
+      <app-cards-group [data]="playlist">Playlists</app-cards-group>
+    </div>
+    <div *ngIf="categories">
+       <app-cards-group [data]="categories">Categories</app-cards-group>
+    </div>
   </div>
 </section>

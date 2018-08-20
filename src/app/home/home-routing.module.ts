@@ -12,7 +12,10 @@ const routes: Routes = [
       {path: 'artists', data: {artist: true}, component: MusicDashboardComponent},
       {path: 'dashboard', component: DashboardComponent},
       {path: 'new-releases', data: {releases: true}, component: MusicDashboardComponent},
-      {path: 'top-tracks', data: {topTrack: true}, component: MusicDashboardComponent},
+      {path: 'playlists', data: {playlist: true}, component: MusicDashboardComponent},
+      {path: 'playlists/:id', component: MusicDashboardComponent, data: {playlistItem: true}},
+      {path: 'playlists/tracks/:id', component: MusicDashboardComponent, data: {trackItem: true}},
+      {path: 'playlists/playlists/tracks/:id', component: MusicDashboardComponent, data: {trackItem: true}},
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]
   },
