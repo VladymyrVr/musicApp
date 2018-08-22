@@ -7,6 +7,8 @@ import { MusicDashboardComponent } from './music-dashboard/music-dashboard.compo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { FavoriteService } from './services/favorite.service';
 
 @NgModule({
   imports: [
@@ -16,7 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NgxPaginationModule,
     RouterModule
   ],
-  declarations: [HomeComponent, MusicDashboardComponent, DashboardComponent],
+  declarations: [HomeComponent, MusicDashboardComponent, DashboardComponent, FavoritesComponent],
+  providers: [FavoriteService]
 })
 
 export class HomeModule {

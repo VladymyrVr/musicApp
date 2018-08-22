@@ -8,7 +8,7 @@
                                                         currentPage: p,
                                                         id: id
                                                         }"
-                        [item]="dataItem"></app-music-card>
+                        [item]="dataItem" (onAddFavorite)="clickFavorite($event)"></app-music-card>
       </div>
        <pagination-controls *ngIf="data.length > 20;"
                             (pageChange)="p = $event"></pagination-controls>

@@ -11,4 +11,5 @@ export interface Release {
   uri: string;
   release_date: string;
   release_date_precision: string;
+  favorite: boolean;
 }

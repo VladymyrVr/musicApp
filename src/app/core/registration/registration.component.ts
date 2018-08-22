@@ -3,6 +3,7 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 import {RegistrationValidator} from './registrationvalidator';
+import { LocalstorageService } from '../../shared/services/localstorage.service';
 
 @Component({
   selector: 'app-registration',
@@ -21,7 +22,8 @@ export class RegistrationComponent implements OnInit {
   autoHide = 2000;
 
   constructor(private formBuilder: FormBuilder,
-              public snackBar: MatSnackBar) {}
+              public snackBar: MatSnackBar,
+              private storage: LocalstorageService) {}
 
   ngOnInit() {
     this.initForm();
@@ -54,6 +56,6 @@ export class RegistrationComponent implements OnInit {
     this.open();
     this.Users.push(this.registrationFormGroup.value);
     this.registrationFormGroup.reset();
-    localStorage.setItem('user', JSON.stringify(this.Users));
+    this.storage.set('user', this.Users);
   }
 }

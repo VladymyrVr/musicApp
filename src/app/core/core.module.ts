@@ -9,7 +9,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatSnackBarModule } from '@angular/material';
 import { AuthGuard } from '../auth.guard';
-import { AuthService } from './services/auth.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -21,10 +21,11 @@ import { AuthService } from './services/auth.service';
     MatSnackBarModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    SharedModule
   ],
   exports: [RouterModule],
   declarations: [LoginComponent, RegistrationComponent],
-  providers: [AuthGuard, AuthService]
+  providers: [AuthGuard]
 })
 export class CoreModule {
 }

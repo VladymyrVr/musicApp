@@ -1,0 +1,10 @@
+<section class="favorites-section">
+  <div class="wrapper">
+    <div *ngIf="tracks">
+      <app-cards-group [data]="tracks">Favorite Tracks</app-cards-group>
+    </div>
+    <div *ngIf="artists">
+      <app-cards-group [data]="artists">Favorite Artists</app-cards-group>
+    </div>
+  </div>
+</section>

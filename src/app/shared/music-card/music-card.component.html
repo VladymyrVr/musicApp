@@ -19,13 +19,15 @@
          [title]="item.track.name">{{item.track.name | slice:0:12}}
       <span *ngIf="item.track.name.length > 12"> ...</span>
     </div>
+    <button [ngClass]="item.favorite ? 'favorite-button check-favorite' : 'favorite-button'"
+            (click)="handleClick(item)"></button>
   </div>
 
-  <div *ngIf="item.icons"
-       class="categories-information">
-    <a [routerLink]="['../playlists', item.id]">
+
+  <div *ngIf="item.track_number"
+       class="track-information">
     <div class="img-wrapper">
-      <img [src]="item.icons[0] ? item.icons[0].url : '../../../assets/img/music-bc.jpeg'"
+      <img [src]="item.album.images[0] ? item.album.images[0].url : '../../../assets/img/music-bc.jpeg'"
            [alt]="item.name"
            [title]="item.name">
     <span class="preview-overlay-container"></span>
@@ -34,7 +36,8 @@
          [title]="item.name">{{item.name | slice:0:12}}
       <span *ngIf="item.name.length > 12"> ...</span>
     </div>
-    </a>
+    <button [ngClass]="item.favorite ? 'favorite-button check-favorite' : 'favorite-button'"
+            (click)="handleClick(item)"></button>
   </div>
 
   <div *ngIf="item.release_date"
@@ -81,6 +84,8 @@
          target="_blank"
          class="spotify-listen"></a>
     </div>
+    <button [ngClass]="item.favorite ? 'favorite-button check-favorite' : 'favorite-button'"
+            (click)="handleClick(item)"></button>
   </div>
 
   <div *ngIf="item.owner"
@@ -97,7 +102,23 @@
           class="spotify-listen"></a>
     </div>
   </div>
-  <button class="favorite-button"></button>
+</div>
+<div *ngIf="item.icons"
+     class="music-card">
+    <div class="categories-information">
+    <a [routerLink]="['../playlists', item.id]">
+    <div class="img-wrapper">
+      <img [src]="item.icons[0] ? item.icons[0].url : '../../../assets/img/music-bc.jpeg'"
+           [alt]="item.name"
+           [title]="item.name">
+    <span class="preview-overlay-container"></span>
+    </div>
+    <div class="categories-name"
+         [title]="item.name">{{item.name | slice:0:12}}
+      <span *ngIf="item.name.length > 12"> ...</span>
+    </div>
+    </a>
+  </div>
 </div>
 
 

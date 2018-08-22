@@ -4,5 +4,5 @@ export interface TrackItem {
   is_local: boolean;
   primary_color: null;
   track: object;
-  video_thumbnail: object
+  video_thumbnail: object;
 }

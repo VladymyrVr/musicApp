@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 import { Artist } from '../models/artist';
 import { Release } from '../models/release';
 import { Playlist } from '../models/playlist';
@@ -10,13 +10,12 @@ import { ItemPlaylist } from '../models/item-playlist';
   styleUrls: ['./music-card.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MusicCardComponent implements OnInit {
+export class MusicCardComponent {
   @Input() item: Artist | Release | Playlist | ItemPlaylist;
+  @Output() onAddFavorite = new EventEmitter();
 
-  constructor() {
-  }
-
-  ngOnInit() {
+  handleClick (item)  {
+    this.onAddFavorite.emit(item);
   }
 
 }

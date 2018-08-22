@@ -7,6 +7,7 @@ import { Artist } from '../../shared/models/artist';
 import { Release } from '../../shared/models/release';
 import { ItemPlaylist } from '../../shared/models/item-playlist';
 import { TrackItem } from '../../shared/models/track-item';
+import { FavoriteService } from '../services/favorite.service';
 
 @Component({
   selector: 'app-music-dashboard',
@@ -21,9 +22,11 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
   loading = false;
   private unsubscribe$ = new Subject();
 
+
   constructor(private spotify: SpotifyService,
               private  cdr: ChangeDetectorRef,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private favorite: FavoriteService) {
   }
 
   ngOnInit() {
@@ -85,6 +88,14 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
                   this.cdr.detectChanges();
                 }
               ) : this.loading = false;
+  }
+
+  clickFavorite(item) {
+    if (item.id) {
+      this.favorite.addToFavorite(item.id, this.route.snapshot.data['type']);
+    } else {
+      this.favorite.addToFavorite(item.track.id, this.route.snapshot.data['type']);
+    }
   }
 
   ngOnDestroy() {
