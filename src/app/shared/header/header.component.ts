@@ -23,5 +23,4 @@ export class HeaderComponent implements OnInit {
         this.spotify.artist.next(artists);
       });
   }
-
 }

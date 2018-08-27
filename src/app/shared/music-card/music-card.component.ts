@@ -12,10 +12,10 @@ import { ItemPlaylist } from '../models/item-playlist';
 })
 export class MusicCardComponent {
   @Input() item: Artist | Release | Playlist | ItemPlaylist;
-  @Output() onAddFavorite = new EventEmitter();
+  @Output() AddFavorite = new EventEmitter();
 
   handleClick (item)  {
-    this.onAddFavorite.emit(item);
+    this.AddFavorite.emit(item);
   }
-
 }
+

@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
   autoHide = 2000;
 
   constructor(private formBuilder: FormBuilder,
-              public snackBar: MatSnackBar,
+              private snackBar: MatSnackBar,
               private storage: LocalstorageService) {}
 
   ngOnInit() {

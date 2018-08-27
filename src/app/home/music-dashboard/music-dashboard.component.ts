@@ -22,7 +22,6 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
   loading = false;
   private unsubscribe$ = new Subject();
 
-
   constructor(private spotify: SpotifyService,
               private  cdr: ChangeDetectorRef,
               private route: ActivatedRoute,
@@ -90,16 +89,16 @@ export class MusicDashboardComponent implements OnInit, OnDestroy {
               ) : this.loading = false;
   }
 
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
   clickFavorite(item) {
     if (item.id) {
       this.favorite.addToFavorite(item.id, this.route.snapshot.data['type']);
     } else {
       this.favorite.addToFavorite(item.track.id, this.route.snapshot.data['type']);
     }
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 }

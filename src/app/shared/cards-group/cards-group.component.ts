@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cards-group',
@@ -12,5 +12,4 @@ export class CardsGroupComponent {
   onChanged(count: number) {
     this.counter = count;
   }
-
 }

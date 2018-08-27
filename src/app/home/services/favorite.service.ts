@@ -6,7 +6,6 @@ import { LocalstorageService } from '../../shared/services/localstorage.service'
 })
 export class FavoriteService {
 
-
   constructor(private storage: LocalstorageService) {
   }
 

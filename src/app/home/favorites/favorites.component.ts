@@ -18,7 +18,6 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   favoriteData = {};
   private unsubscribe$ = new Subject();
 
-
   constructor(private storage: LocalstorageService,
               private spotify: SpotifyService,
               private cdr: ChangeDetectorRef) {
@@ -29,14 +28,11 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.spotify.getFavoriteData(this.favoriteData)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(dataList => {
+        console.log(dataList);
         this.tracks = dataList[0]['tracks'];
         this.artists = dataList[1]['artists'];
         this.cdr.detectChanges();
       });
-  }
-
-  init(obj, ...type) {
-    type.forEach(typeN => obj[typeN] = this.storage.get(typeN));
   }
 
   ngOnDestroy() {
@@ -44,4 +40,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
+  init(obj, ...type) {
+    type.forEach(typeN => obj[typeN] = this.storage.get(typeN));
+  }
 }

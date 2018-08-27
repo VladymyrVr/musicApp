@@ -18,12 +18,11 @@ export class SpotifyService {
   constructor(private http: HttpClient) {
   }
 
-  getQuery(query: string) {
+  getQuery(query: string): Observable<Object> {
     const url = `https://api.spotify.com/v1/${ query }`;
-    const access_token = 'BQAIlFy_bTIxgEp4SLIVAuJSR2W3RsEhzglco' +
-      'yursim-ibuFhhN7sKIeCHg3qreKrq_XsVhEera-8LNqSS9E0aJTwE' +
-      'kPiHJl7BUwO7g1MhN4Vxl5UTEUrFyjzJKKrkg0XI' +
-      'shmd1lN84xLh4f1r6VFXmmsqdQJNzAWLYjTe9HzdAR3NCOpQ';
+    const access_token = 'BQBOe9Q6EOXNjWT4xV92j1XzUmcuWBbuwPuWdummzKo6OLgbZU' +
+      'JBpDqX05SttZLrMlQhDbeLKaCFXR83eytC6AGnEmL_FOQJk0K4OeI4ZWzPfE6cBrr' +
+      'TxcwTfAXTmI1KILVDcEvVNh0V7wuCJjDjyD-g0hMH_xzUzKruuiWnktjPud6WBw';
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + access_token
     });
@@ -39,14 +38,13 @@ export class SpotifyService {
     return new Observable(null);
   }
 
-  getMainData(): Observable<[Release[], Playlist, ItemCategories[] ]> {
+  getMainData(): Observable<[Release[], Playlist, ItemCategories[]]> {
     return forkJoin(this.getNewReleases(), this.getRecommendations(), this.getCategories());
   }
 
-  getFavoriteData(objFavorite) {
+  getFavoriteData(objFavorite): Observable<Object[]> {
     return forkJoin(this.getTracks(objFavorite.track), this.getArtists(objFavorite.artists));
   }
-
 
   getNewReleases(): Observable<Release[]> {
     return this.getQuery('browse/new-releases?country=US&limit=50')
@@ -77,13 +75,11 @@ export class SpotifyService {
       ));
   }
 
-  getTracks(ids) {
+  getTracks(ids: string[]): Observable<Object> {
     return this.getQuery(`tracks?ids=${ids.join(',')}`);
   }
 
-  getArtists(ids) {
+  getArtists(ids: string[]): Observable<Object> {
     return this.getQuery(`artists?ids=${ids.join(',')}`);
   }
-
-
 }
