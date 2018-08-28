@@ -20,9 +20,9 @@ export class SpotifyService {
 
   getQuery(query: string): Observable<Object> {
     const url = `https://api.spotify.com/v1/${ query }`;
-    const access_token = 'BQBOe9Q6EOXNjWT4xV92j1XzUmcuWBbuwPuWdummzKo6OLgbZU' +
-      'JBpDqX05SttZLrMlQhDbeLKaCFXR83eytC6AGnEmL_FOQJk0K4OeI4ZWzPfE6cBrr' +
-      'TxcwTfAXTmI1KILVDcEvVNh0V7wuCJjDjyD-g0hMH_xzUzKruuiWnktjPud6WBw';
+    const access_token = 'BQAwRO7JV_gs3k-na__iEElS7dN5SWpYYLHrg5YSgg5IgpmFXs' +
+      'UFPSO9Y6MMgiRbqvwKV0UsgjCJPZ3BIPR4B2tuZQ9SodltgSswLtf56pU_S9MjAwq' +
+      'p6PcLjRKcXL9ECxqB9Ec4ZKGO7l4yEFA5_i-khbw_jdJZ3_qR2i8Z3HrwxYye3Q';
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + access_token
     });
@@ -43,7 +43,13 @@ export class SpotifyService {
   }
 
   getFavoriteData(objFavorite): Observable<Object[]> {
-    return forkJoin(this.getTracks(objFavorite.track), this.getArtists(objFavorite.artists));
+    const resultArray = [];
+    for (const key in objFavorite) {
+      if (objFavorite.key !== []) {
+        resultArray.push(this.getType(objFavorite[key], key));
+      }
+    }
+    return forkJoin(resultArray.map(item => item));
   }
 
   getNewReleases(): Observable<Release[]> {
@@ -75,11 +81,11 @@ export class SpotifyService {
       ));
   }
 
-  getTracks(ids: string[]): Observable<Object> {
-    return this.getQuery(`tracks?ids=${ids.join(',')}`);
-  }
-
-  getArtists(ids: string[]): Observable<Object> {
-    return this.getQuery(`artists?ids=${ids.join(',')}`);
+  getType(ids: string[], type: string): Observable<Object> | string[] {
+    if (ids.length) {
+      return this.getQuery(`${type}?ids=${ids.join(',')}`);
+    } else {
+      return [];
+    }
   }
 }

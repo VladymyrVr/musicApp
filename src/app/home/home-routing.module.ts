@@ -15,8 +15,8 @@ const routes: Routes = [
       {path: 'new-releases', data: {releases: true, type: 'releases'}, component: MusicDashboardComponent},
       {path: 'playlists', data: {playlist: true, type: 'playlists'}, component: MusicDashboardComponent},
       {path: 'playlists/:id', component: MusicDashboardComponent, data: {playlistItem: true, type: 'playlists'}},
-      {path: 'playlists/tracks/:id', component: MusicDashboardComponent, data: {trackItem: true, type: 'track'}},
-      {path: 'playlists/playlists/tracks/:id', component: MusicDashboardComponent, data: {trackItem: true, type: 'track'}},
+      {path: 'playlists/tracks/:id', component: MusicDashboardComponent, data: {trackItem: true, type: 'tracks'}},
+      {path: 'playlists/playlists/tracks/:id', component: MusicDashboardComponent, data: {trackItem: true, type: 'tracks'}},
       {path: 'favorites', component: FavoritesComponent},
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     ]

@@ -5,26 +5,39 @@ import { LocalstorageService } from '../../shared/services/localstorage.service'
   providedIn: 'root'
 })
 export class FavoriteService {
-
   constructor(private storage: LocalstorageService) {
   }
 
   addToFavorite(item: string, type: string) {
-        this.checkCollection(item, type);
+    this.checkCollection(item, type);
   }
 
   checkCollection(item, type) {
     if (this.storage.get(type)) {
-      this.addCollection(item, type, this.storage.get(type));
+      this.editCollection(item, type, this.storage.get(type));
     } else {
-      this.addCollection(item, type);
+      this.editCollection(item, type);
     }
   }
 
-  addCollection(item, type, ...value) {
+  editCollection(item, type, ...value) {
     const collection = new Set(...value);
-    collection.add(item);
+    if (collection.has(item)) {
+      collection.delete(item);
+    } else {
+      collection.add(item);
+    }
     this.storage.set(type, Array.from(collection));
+  }
+
+  newCollection(item: string): boolean {
+    if (this.storage.get('artists') ? this.storage.get('artists').includes(item) : false) {
+      return true;
+    } else if (this.storage.get('tracks') ? this.storage.get('tracks').includes(item) : false) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 

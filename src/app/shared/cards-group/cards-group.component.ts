@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class CardsGroupComponent {
   @Input() data;
   counter = 6;
+  hiddenFavorite = true;
 
   onChanged(count: number) {
     this.counter = count;

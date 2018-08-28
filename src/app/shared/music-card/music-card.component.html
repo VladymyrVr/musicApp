@@ -19,7 +19,7 @@
          [title]="item.track.name">{{item.track.name | slice:0:12}}
       <span *ngIf="item.track.name.length > 12"> ...</span>
     </div>
-    <button [ngClass]="item.favorite ? 'favorite-button check-favorite' : 'favorite-button'"
+    <button *ngIf="!hidden" [ngClass]="favorite ? 'favorite-button check-favorite' : 'favorite-button'"
             (click)="handleClick(item)"></button>
   </div>
 
@@ -36,7 +36,7 @@
          [title]="item.name">{{item.name | slice:0:12}}
       <span *ngIf="item.name.length > 12"> ...</span>
     </div>
-    <button [ngClass]="item.favorite ? 'favorite-button check-favorite' : 'favorite-button'"
+    <button *ngIf="!hidden" [ngClass]="favorite ? 'favorite-button check-favorite' : 'favorite-button'"
             (click)="handleClick(item)"></button>
   </div>
 
@@ -84,7 +84,7 @@
          target="_blank"
          class="spotify-listen"></a>
     </div>
-    <button [ngClass]="item.favorite ? 'favorite-button check-favorite' : 'favorite-button'"
+    <button *ngIf="!hidden" [ngClass]="favorite ? 'favorite-button check-favorite' : 'favorite-button'"
             (click)="handleClick(item)"></button>
   </div>
 

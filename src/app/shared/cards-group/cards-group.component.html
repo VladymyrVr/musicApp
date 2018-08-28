@@ -4,6 +4,6 @@
     </div>
     <div class="flex-wrapper">
       <app-music-card *ngFor="let item of data | slice:0:counter"
-                      [item]="item">
+                      [item]="item" [hidden]="hiddenFavorite">
       </app-music-card>
     </div>

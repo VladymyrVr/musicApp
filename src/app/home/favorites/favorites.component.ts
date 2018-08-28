@@ -24,13 +24,12 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.init(this.favoriteData, 'artists', 'track');
+    this.init(this.favoriteData, 'artists', 'tracks');
     this.spotify.getFavoriteData(this.favoriteData)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(dataList => {
-        console.log(dataList);
-        this.tracks = dataList[0]['tracks'];
-        this.artists = dataList[1]['artists'];
+        this.artists = dataList[0]['artists'];
+        this.tracks = dataList[1]['tracks'];
         this.cdr.detectChanges();
       });
   }

@@ -8,6 +8,7 @@ import { Release } from '../../shared/models/release';
 import { ItemPlaylist } from '../../shared/models/item-playlist';
 import { TrackItem } from '../../shared/models/track-item';
 import { FavoriteService } from '../services/favorite.service';
+import { LocalstorageService } from '../../shared/services/localstorage.service';
 
 @Component({
   selector: 'app-music-dashboard',
