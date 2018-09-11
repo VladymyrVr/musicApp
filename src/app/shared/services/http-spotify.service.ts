@@ -13,15 +13,16 @@ import { TrackItem } from '../models/track-item';
   providedIn: 'root'
 })
 export class SpotifyService {
+  artist = new Subject<Artist[]>();
+
   constructor(private http: HttpClient) {
   }
 
-  artist = new Subject<Artist[]>();
-
-  getQuery(query: string) {
+  getQuery(query: string): Observable<Object> {
     const url = `https://api.spotify.com/v1/${ query }`;
-    const access_token = 'BQCYCxcePsN5H2zKGSz9KqDu-dHbdFhCIBwS8U8qH' +
-      'pJWqb9PsHwJp7Dw163mkWM1gGGTgkoNr8SYJ-HOJ3BYD4KQp4MZbq2FWhdF-7Bdk-oZAOC6wzKxdtU_Qp80wTdWjThuYYb_pwPPHV_3vb4g5vmRYlBduNdNY8EXHlif25-AEsd34w';
+    const access_token = 'BQAwRO7JV_gs3k-na__iEElS7dN5SWpYYLHrg5YSgg5IgpmFXs' +
+      'UFPSO9Y6MMgiRbqvwKV0UsgjCJPZ3BIPR4B2tuZQ9SodltgSswLtf56pU_S9MjAwq' +
+      'p6PcLjRKcXL9ECxqB9Ec4ZKGO7l4yEFA5_i-khbw_jdJZ3_qR2i8Z3HrwxYye3Q';
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + access_token
     });
@@ -37,8 +38,18 @@ export class SpotifyService {
     return new Observable(null);
   }
 
-  getMainData(): Observable<[Release[], Playlist, ItemCategories[] ]> {
+  getMainData(): Observable<[Release[], Playlist, ItemCategories[]]> {
     return forkJoin(this.getNewReleases(), this.getRecommendations(), this.getCategories());
+  }
+
+  getFavoriteData(objFavorite): Observable<Object[]> {
+    const resultArray = [];
+    for (const key in objFavorite) {
+      if (objFavorite.key !== []) {
+        resultArray.push(this.getType(objFavorite[key], key));
+      }
+    }
+    return forkJoin(resultArray.map(item => item));
   }
 
   getNewReleases(): Observable<Release[]> {
@@ -70,4 +81,11 @@ export class SpotifyService {
       ));
   }
 
+  getType(ids: string[], type: string): Observable<Object> | string[] {
+    if (ids.length) {
+      return this.getQuery(`${type}?ids=${ids.join(',')}`);
+    } else {
+      return [];
+    }
+  }
 }

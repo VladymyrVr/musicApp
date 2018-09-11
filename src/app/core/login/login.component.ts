@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
-import {AuthService} from '../services/auth.service';
+import { LocalstorageService } from '../../shared/services/localstorage.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               public snackBar: MatSnackBar,
-              private setLogged: AuthService) {
+              private storage: LocalstorageService) {
     this.loginFormGroup = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]]
@@ -42,11 +42,11 @@ export class LoginComponent implements OnInit {
   }
 
   checkUser() {
-    const userCheck = JSON.parse(localStorage.getItem('user')).find((item) => {
+    const userCheck = this.storage.get('user').find((item) => {
       return (item.email === this.loginFormGroup.value.email && item.passwords.password === this.loginFormGroup.value.password);
     });
     if (userCheck) {
-      this.setLogged.setItem('userLogged', 'true');
+      this.storage.set('userLogged', 'true');
     }
     return userCheck;
   }

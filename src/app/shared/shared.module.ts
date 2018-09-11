@@ -9,6 +9,7 @@ import { MusicCardComponent } from './music-card/music-card.component';
 import { LoaderComponent } from './loader/loader.component';
 import { MoreButtonComponent } from './buttons/more-button/more-button.component';
 import { CardsGroupComponent } from './cards-group/cards-group.component';
+import { LocalstorageService } from './services/localstorage.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { CardsGroupComponent } from './cards-group/cards-group.component';
     MoreButtonComponent,
     CardsGroupComponent
   ],
-  providers: [SpotifyService],
+  providers: [SpotifyService, LocalstorageService],
   declarations: [HeaderComponent, MusicCardComponent, LoaderComponent, MoreButtonComponent, CardsGroupComponent]
 })
 export class SharedModule {

@@ -1,9 +1,9 @@
 <div class="header-group">
           <h2><ng-content></ng-content></h2>
-          <app-more-button (onChanged)="onChanged($event)"></app-more-button>
+          <app-more-button *ngIf="data.length > 6" (onChanged)="onChanged($event)"></app-more-button>
     </div>
     <div class="flex-wrapper">
       <app-music-card *ngFor="let item of data | slice:0:counter"
-                      [item]="item">
+                      [item]="item" [hidden]="hiddenFavorite">
       </app-music-card>
     </div>

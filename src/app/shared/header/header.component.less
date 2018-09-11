@@ -97,7 +97,7 @@ input {
   }
 }
 
-.log-in {
+.log-in, .favorites {
   display: block;
   position: relative;
   width: 32px;
@@ -112,7 +112,24 @@ input {
   &:hover {
     border: 1px solid #ffa500;
   }
+}
 
+.favorites {
+  margin-right: 10px;
+}
+
+.favorites::before {
+  position: absolute;
+  content: '';
+  width: 24px;
+  height: 24px;
+  background: url("../../../assets/img/favorite-icon.png") no-repeat;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.log-in {
   &::before {
     position: absolute;
     content: '';

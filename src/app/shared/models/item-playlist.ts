@@ -13,5 +13,5 @@ export interface ItemPlaylist {
   snapshot_id: string;
   owner: {};
   public: null;
-  primary_color: null
+  primary_color: null;
 }

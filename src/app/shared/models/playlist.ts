@@ -1,5 +1,6 @@
 export interface Playlist {
   message: string;
+  favorite: boolean;
   playlists: {
     href: string;
     items: [{

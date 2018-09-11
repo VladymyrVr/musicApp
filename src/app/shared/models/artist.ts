@@ -9,4 +9,5 @@ export interface Artist {
   type: string;
   popularity: number;
   uri: string;
+  favorite: boolean;
 }

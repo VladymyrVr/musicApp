@@ -22,7 +22,5 @@ export class HeaderComponent implements OnInit {
       .subscribe(artists => {
         this.spotify.artist.next(artists);
       });
-    this.search.setValue('Jazz');
   }
-
 }
